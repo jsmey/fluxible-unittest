@@ -57,17 +57,18 @@ import sinon from 'sinon';
           message: 'hello'
         }
         const mockData = 'world';
-
+        const mockContextData = 'fakecontext';
         // stub getStateFromStores wth mock data
         sandbox.stub(Test.prototype, 'getStateFromStores')
         .returns({getMessageFromStore:  mockData});
 
         const wrapper = mount(<Test {...props}/>, {
-          context: mockContext,
-          childContextTypes: mockChildContextTypes
+          context: Object.assign( {}, mockContext, {contextData: mockContextData}),
+          childContextTypes: Object.assign( {}, mockChildContextTypes, {contextData: sandbox.spy()})
         });
 
         expect(wrapper.containsMatchingElement(<div>hello</div>)).to.equal(true);
         expect(wrapper.containsMatchingElement(<div>{mockData}</div>)).to.equal(true);
+        expect(wrapper.containsMatchingElement(<div>{mockContextData}</div>)).to.equal(true);
     });
   });

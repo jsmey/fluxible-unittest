@@ -4,9 +4,10 @@ import TestStore from '../stores/TestStore';
 
 class Test extends React.Component {
 
-  static contextTyes = {
+  static contextTypes = {
     executeAction: React.PropTypes.func,
-    getStore: React.PropTypes.func
+    getStore: React.PropTypes.func,
+    contextData: React.PropTypes.string
   };
   static propsTypes = {
     message: React.PropTypes.string
@@ -22,6 +23,7 @@ class Test extends React.Component {
         <div>
           <div>{this.props.message}</div>
           <div>{this.props.getMessageFromStore}</div>
+          <div>{this.context.contextData}</div>
         </div>
 
       );
