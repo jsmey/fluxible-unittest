@@ -64,7 +64,7 @@ import sinon from 'sinon';
 
         const wrapper = mount(<Test {...props}/>, {
           context: Object.assign( {}, mockContext, {contextData: mockContextData}),
-          childContextTypes: Object.assign( {}, mockChildContextTypes, {contextData: sandbox.spy()})
+          childContextTypes: Object.assign( {}, mockChildContextTypes, {contextData: React.PropTypes.string})
         });
 
         expect(wrapper.containsMatchingElement(<div>hello</div>)).to.equal(true);
